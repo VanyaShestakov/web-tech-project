@@ -18,14 +18,14 @@ function get_departments($link) {
 $departments = get_departments($link);
 // $links = get_links($link);
 
-$works_template = file_get_contents("../Templates/works.html");
+$works_template = file_get_contents("../templates/works.html");
 // for ($i = 0; $i < count($links); $i++)
 // {
 //     $works_template = str_replace('{link_'.$i.'}', '"'.$links[$i]['link'].'"', $works_template);
 //     $works_template = str_replace('{works__title_'.$i.'}', $links[$i]['works_title'], $works_template);
 //     $works_template = str_replace('{works__text_'.$i.'}', $links[$i]['works_text'], $works_template);
 // }
-$team_template = file_get_contents("../Templates/team.html");
+$team_template = file_get_contents("../templates/team.html");
 for ($i = 0; $i < count($departments); $i++)
 {
     // $team_template = str_replace('{link_'.$i.'}', '"'.$team[$i]['link'].'"', $team_template);
@@ -40,7 +40,7 @@ for ($i = 0; $i < count($departments); $i++)
 
 $main_template = file_get_contents("departments.html");
 $main_template = str_replace('{team}', $team_template, $main_template);
-$main_template = str_replace('{header}', file_get_contents("../Templates/header.html"), $main_template);
+$main_template = str_replace('{header}', file_get_contents("../templates/header.html"), $main_template);
 $main_template = str_replace('{works}', $works_template, $main_template);
-$main_template = str_replace('{footer}', file_get_contents("../Templates/footer.html"), $main_template);
+$main_template = str_replace('{footer}', file_get_contents("../templates/footer.html"), $main_template);
 echo $main_template;
