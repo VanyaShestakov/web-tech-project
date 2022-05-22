@@ -1,0 +1,38 @@
+
+    version: '2'
+    services:
+      nginx:
+        image: nginx:latest
+        ports:
+          - "8000:80"
+        volumes:
+          - ./hosts:/etc/nginx/conf.d
+          - ./src:/var/src
+          - ./logs:/var/log/nginx
+        links:
+          - php
+      php:
+        build: ./images/php
+        volumes:
+          - ./src:/var/src
+
+      db:
+        image: arm64v8/mysql:oracle
+        container_name: db
+        restart: unless-stopped
+        tty: true
+        expose:
+          - 3306
+        # ports:
+        #   - "3306:3306"
+        environment:
+          MYSQL_DATABASE: my_db
+          MYSQL_ROOT_PASSWORD: rootroot
+          SERVICE_NAME: mysql
+        networks:
+          - app-network
+
+    #Docker Networks
+    networks:
+      app-network:
+        driver: bridge

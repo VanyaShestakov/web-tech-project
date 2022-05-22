@@ -1,0 +1,4 @@
+./error.log
+./access.log
+trashcan/
+/src/database/database.php
