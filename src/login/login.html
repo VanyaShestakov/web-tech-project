@@ -10,14 +10,12 @@
         href="https://fonts.googleapis.com/css2?family=Cardo:ital@1&family=Open+Sans:wght@700&family=Raleway:wght@400;600;700&display=swap"
         rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizza Pizza</title>
+    <title>Login</title>
     <link rel="shortcut icon" href="../assets/images/logo.svg" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
 <body>
-    {header}
-
     <div class="intro">
         <div class="container">
             <div class="intro__inner">
@@ -30,10 +28,10 @@
 
 
     <div class="form_login">
-        <form class="form" id="logIn_form" action="login.php" method="post">
+        <form class="form" id="logIn_form" action="login.php" method="POST">
             <div class="form__title">Log In</div>
-            <input class="input" type="text" placeholder="Your name">
-            <input class="input" type="password" placeholder="Your password">
+            <input required class="input" type="text" placeholder="Your username" name="login">
+            <input required class="input" type="password" placeholder="Your password" name="password">
             <button class="form__btn" id="log_button" type="submit">
                 Log In
             </button>
@@ -49,9 +47,6 @@
         </a>
         <br>
     </div>
-
-    <!-- Footer -->
-    {footer}
 </body>
 
 </html>

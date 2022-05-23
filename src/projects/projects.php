@@ -9,11 +9,11 @@ function get_team($link) {
     return $data;
 }
 
+session_start();
 if (isset($_SESSION['identity'])) {
-    header("Location: index/features.php");
     $identity = $_SESSION['identity'];
 } else {
-    header("Location: ../login/login.html");
+    header("Location: ../login/login.php");
 }
 
 $team = get_team($link);
