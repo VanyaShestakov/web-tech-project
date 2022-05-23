@@ -8,6 +8,7 @@ function get_user($link, $username) {
     return $data;
 }
 
+session_unset();
 session_start();
 
 if (isset($_POST['login']) && isset($_POST['password'])) {
