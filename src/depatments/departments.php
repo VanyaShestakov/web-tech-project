@@ -7,12 +7,11 @@ function get_departments($link) {
     $data = mysqli_fetch_all($result, 1); 
     return $data;
 }
-
+session_start();
 if (isset($_SESSION['identity'])) {
-    header("Location: index/features.php");
     $identity = $_SESSION['identity'];
 } else {
-    header("Location: ../login/login.html");
+    header("Location: ../login/login.php");
 }
 
 $departments = get_departments($link);
