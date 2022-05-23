@@ -8,6 +8,13 @@ function get_departments($link) {
     return $data;
 }
 
+if (isset($_SESSION['identity'])) {
+    header("Location: index/features.php");
+    $identity = $_SESSION['identity'];
+} else {
+    header("Location: login/login.html");
+}
+
 $departments = get_departments($link);
 
 $works_template = file_get_contents("../templates/works.html");
