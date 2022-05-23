@@ -6,34 +6,33 @@ require 'Exception.php';
 
 require_once 'features.php';
 
-$mail = new PHPMailer\PHPMailer\PHPMailer(true);                              // Passing `true` enables exceptions
+$mail = new PHPMailer\PHPMailer\PHPMailer(true);                   
 try {
-    //Server settings
-    $mail->setLanguage('ru', 'vendor/phpmailer/phpmailer/language/'); // Перевод на русский язык
+    $mail->setLanguage('ru', 'vendor/phpmailer/phpmailer/language/');
     $email = $_POST['email'];
+    $desc = $_POST['desc'];
+    $pattern = "#(?:https?|ftp)://[^\s\,]+#i";
+    $result = preg_replace($pattern, "<a style='color:red' href='$0'>$0</a>", $desc);
    
-    $mail->SMTPDebug = 1;                                 // Enable verbose debug output
+    $mail->SMTPDebug = 1;                                 
 
-    $mail->isSMTP();                                      // Set mailer to use SMTP
+    $mail->isSMTP();                                      
    
-    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-
-    //$mail->SMTPSecure = 'ssl';                          // secure transfer enabled REQUIRED for Gmail
-    //$mail->Port = 465;                                  // TCP port to connect to
-    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 587;                                    // TCP port to connect to
+    $mail->SMTPAuth = true;                               
+                             
+    $mail->SMTPSecure = 'tls';                            
+    $mail->Port = 587;                                    
    
-    $mail->Host = 'smtp.gmail.com';                       // Specify main and backup SMTP servers
-    $mail->Username = 'employee.management.service1@gmail.com';               // SMTP username
-    $mail->Password = 'employee123';                         // SMTP password
+    $mail->Host = 'smtp.gmail.com';                      
+    $mail->Username = 'employee.management.service1@gmail.com';               
+    $mail->Password = 'employee123';                         
 
-    //Recipients
     $mail->setFrom('employee.management.service1@gmail.com', 'EMS');
-    $mail->addAddress($email);              // Name is optional
+    $mail->addAddress($email);              
 
-    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->isHTML(true);                                 
     $mail->Subject = 'Employee Management Service';
-    $mail->Body    = 'We are glad that you want to become a part of our team. Wait for further action from us!';
+    $mail->Body  = $result;
     $mail->send();
     echo $main_template;
 } catch (Exception $e) {
