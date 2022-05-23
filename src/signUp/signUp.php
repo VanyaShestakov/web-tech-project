@@ -14,3 +14,4 @@ if (count($data) != 0) {
 
 $insert_query = 'INSERT INTO auth_info(username, password) VALUES (\''.$username.'\', \''.$password.'\');';
 mysqli_query($link, $insert_query);
+header("Location: /login/login.html");
